@@ -7,24 +7,24 @@ import java.io.*;
 //import java.util.ArrayList;
 
 public class Player extends Thread {
-    String File = "2.mid";
+    String File = "adv.mid";
     Start RootParrent;
 
     public class myListener implements Receiver {
         public void send(MidiMessage message, long timeStamp) {
+            // System.out.println(message.getStatus());
             if (message instanceof ShortMessage) {
                 ShortMessage sm = (ShortMessage) message;
                 int channel = sm.getChannel();
                 int command = sm.getCommand();
 
                 if (command == ShortMessage.NOTE_ON) {
-                    //               String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
-                    //               int note = sm.getData1() % 12;
-                    //               String name = NOTE_NAMES[note];
+                    // String[] NOTE_NAMES = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+                    // int note = sm.getData1() % 12;
+                    // String name = NOTE_NAMES[note];
 
-                    //                System.out.println( channel );
 
-                    int rawKey = sm.getData1() - 12 * 2;
+                    int rawKey = sm.getData1();
 
                     Boolean State = true;
 
@@ -35,7 +35,7 @@ public class Player extends Thread {
 
                     RootParrent.noteTrigger(rawKey, channel, State);
                 } else if (command == ShortMessage.NOTE_OFF) {
-                    int rawKey = sm.getData1() - 12 * 2;
+                    int rawKey = sm.getData1();
 
                     RootParrent.noteTrigger(rawKey, channel, false);
                 }

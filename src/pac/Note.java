@@ -32,20 +32,20 @@ public class Note {
   }
 
   void draw() {
-
+    // parent.translate(0,0,0.0001f*this.key.index);
     if (!this.black) {
-      parent.fill(this.Color, 300, 300);
+      parent.fill(this.Color);
       parent.rect(this.x, this.y, 36, this.h, 7);
     } else {
-      parent.fill(this.Color, 300, 300);
+      parent.fill(this.Color);
       parent.rect(this.x - 15, this.y, 24, this.h, 7);
     }
 
   }
 
-  void update(int delta_time) {
+  void update(int delta_time,float speed) {
 
-    this.y -= 1 * delta_time;
+    this.y -= speed * delta_time;
 
     if (this.y < -parent.height - this.h) {
       parent.Notes.remove(this);
@@ -54,7 +54,7 @@ public class Note {
     if (!NoLongerActive) {
 
       if (this.key.Active) {
-        this.h += 1 * delta_time;
+        this.h += speed * delta_time;
       } else
         NoLongerActive = true;
 

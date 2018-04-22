@@ -1,0 +1,22 @@
+{
+    "run": [
+        {
+            "name": "ProcesingPiano",
+            "projectName": "ProcesingPiano",
+            "workingDirectory": "d:\\eclipse-workspace\\MidiVisPiano",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ],
+    "debug": [
+        {
+            "name": "ProcesingPiano",
+            "projectName": "ProcesingPiano",
+            "workingDirectory": "d:\\eclipse-workspace\\MidiVisPiano",
+            "args": [],
+            "vmargs": [],
+            "preLaunchTask": ""
+        }
+    ]
+}

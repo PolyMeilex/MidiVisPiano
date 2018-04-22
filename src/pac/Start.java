@@ -9,11 +9,13 @@ public class Start extends PApplet {
     }
 
     public void settings() {
-        // size(1280,1000);
-        fullScreen();
+        size(1280,1000,P3D);
+        // fullScreen(P2D);
+        // size(1000,1000);
     }
 
-    PImage white, black, blackA, noteImage;
+    // PImage white, black, blackA, noteImage;
+    public PImage Psprite;  
 
     ArrayList<Key> Keys = new ArrayList<Key>();
     ArrayList<Note> Notes = new ArrayList<Note>();
@@ -23,24 +25,48 @@ public class Start extends PApplet {
 
     KeyRenderer KeyRenderer;
 
+    float SclPlaned = 1f;
+    float Scl = 1;
+    
+
     long last_time = System.nanoTime();
 
-    public void noteTrigger(int i, int channel, Boolean state) {
-        Key KeyObj = this.Keys.get(i);
 
-        int Color = 91;
+    public void noteTrigger(int i, int channel, Boolean state) {
+        Key KeyObj = this.Keys.get(i-12 * 2);
+        int Color = color(91, 201, 307);
+        
 
         if (channel % 2 == 0)
-            Color = 200;
+            Color =  color(200, 300, 300);
         else if (channel % 3 == 0)
-            Color = 91;
+            Color =  color(91, 300, 300);
         else
-            Color = 300;
+            Color =  color(300, 300, 300);
+
+        if(channel==9) {
+            Color = color(0, 0, 100); 
+            
+            if(i==35||i==36){
+                SclPlaned=2f;
+                // else bgPlaned=1f;
+            }
+            else{
+                SclPlaned=0.1f;
+            }
+
+        }
+        else{
+            KeyObj.ps.spawnParticles(1,KeyObj.x,0,Color);
+        }
+        
 
         KeyObj.Active = state;
         KeyObj.Color = Color;
         //
         //		if(!state) System.out.println("Delete");
+
+       
 
         if (state) {
             Note test = new Note(this, KeyObj, Color);
@@ -55,12 +81,14 @@ public class Start extends PApplet {
         // blackA    = loadImage("texture/bKeyA.png");
         // noteImage = loadImage("texture/note.png");
 
+        Psprite = loadImage("texture/sprite.png");
+
         for (int oct = 0; oct < 8; oct++) {
             for (int i = 0; i < 12; i++) {
                 if (i == 1 || i == 3 || i == 6 || i == 8 || i == 10) {
-                    Keys.add(new Key(true, Keys.size()));
+                    Keys.add(new Key(true, Keys.size(),new ParticleSystem(this,10)));
                 } else {
-                    Keys.add(new Key(false, Keys.size()));
+                    Keys.add(new Key(false, Keys.size(),new ParticleSystem(this,10)));
                 }
             }
         }
@@ -84,17 +112,34 @@ public class Start extends PApplet {
         MidiPlayer.start();
 
         colorMode(HSB, 360);
+       
     }
 
     public void draw() {
-        background(0);
+        
+        Scl= lerp(Scl,SclPlaned,0.05f);
+        
+        background(0,0,0);
+        
+        fill(255);
+        textSize(26);
+        text((int) frameRate + " FPS : " + Notes.size() + " Objs", 100, 100);
+
+        // translate (width/2,height/2);
+        // rotateX(0);
+        // translate (-width/2,-height/2);
+        
+        // translate(0, -0*50f);
+
+    
+
 
         translate(0, height - 233);
 
         KeyRenderer.draw(Keys);
 
-        fill(1, 200, 200);
-        rect(0, -5, width, 5);
+        // fill(1, 200, 200);
+        // rect(0, -5, width, 5);
 
         long time = System.nanoTime();
         int delta_time = (int) ((time - last_time) / 1000000);
@@ -102,15 +147,12 @@ public class Start extends PApplet {
 
         for (int i = 0; i < Notes.size(); i++) {
             Note Note = Notes.get(i);
-            Note.update(delta_time);
+            Note.update(delta_time,1);
             Note.draw();
         }
 
-        translate(0, -height + 233);
-        fill(255);
-        textSize(26);
+        // translate(0, -height + 233);
 
-        text((int) frameRate + " FPS : " + Notes.size() + " Objs", 100, 100);
 
         if ((int) frameRate < 30 & Notes.size() > 20) {
             Notes.remove(0);

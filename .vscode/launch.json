@@ -14,24 +14,6 @@
             "mainClass": "pac.Start",
             "projectName": "ProcesingPiano",
             "args": ""
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-PApplet<ProcesingPiano>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-            "mainClass": "processing.core.PApplet",
-            "projectName": "ProcesingPiano",
-            "args": ""
-        },
-        {
-            "type": "java",
-            "name": "Debug (Attach)",
-            "request": "attach",
-            "hostName": "localhost",
-            "port": 0
         }
     ]
 }
