@@ -12,7 +12,7 @@ public static void main(String[] args)
 
 public void settings()
 {
-//		size(1280,1000);
+	// size(1280,1000);
     fullScreen();
 }
 
@@ -23,6 +23,8 @@ ArrayList<Note> Notes = new ArrayList<Note>();
 
 ArrayList<Key> WhiteKeysA = new ArrayList<Key>();
 ArrayList<Key> BlackKeysA = new ArrayList<Key>();
+
+KeyRenderer KeyRenderer;
 
 long last_time = System.nanoTime();
 
@@ -56,10 +58,10 @@ public void noteTrigger(int i, int channel, Boolean state)
 public void setup()
 {
     background(0);
-    white     = loadImage("texture/wKey.png");
-    black     = loadImage("texture/bKey.png");
-    blackA    = loadImage("texture/bKeyA.png");
-    noteImage = loadImage("texture/note.png");
+    // white     = loadImage("texture/wKey.png");
+    // black     = loadImage("texture/bKey.png");
+    // blackA    = loadImage("texture/bKeyA.png");
+    // noteImage = loadImage("texture/note.png");
 
     for (int oct = 0; oct < 8; oct++)
     {
@@ -75,10 +77,6 @@ public void setup()
             }
         }
     }
-
-
-
-
     int xTrans = 0;
     for (int i = 0; i < Keys.size(); i++)
     {
@@ -98,6 +96,9 @@ public void setup()
     }
 
 
+    KeyRenderer = new KeyRenderer(this,WhiteKeysA,BlackKeysA);
+
+
     Player MidiPlayer = new Player("1.mid", this);
     MidiPlayer.start();
 
@@ -110,35 +111,8 @@ public void draw()
 
     translate(0, height - 233);
 
-    for (int i = 0; i < WhiteKeysA.size(); i++)
-    {
-        Key obj   = WhiteKeysA.get(i);
-        int Color = obj.Color;
-
-        if (Keys.get(obj.index).Active)
-            fill(Color, 201, 307);
-        else
-            fill(0, 0, 320);
-
-        rect(WhiteKeysA.get(i).x, 0, 35, 233);
-    }
-    for (int i = 0; i < BlackKeysA.size(); i++)
-    {
-        Key obj   = BlackKeysA.get(i);
-        int Color = obj.Color;
-//		    PImage display = black;
-
-        if (Keys.get(obj.index).Active)
-        {                                              /* display=blackA;*/
-            fill(Color, 201, 307);
-        }
-        else
-            fill(0, 0, 0);
-
-
-        rect(BlackKeysA.get(i).x - 15, 0, 24, 155);
-//		    image(display, BlackKeysA.get(i).x -15, 0);
-    }
+    KeyRenderer.draw(Keys);
+   
 
     fill(1, 200, 200);
     rect(0, -5, width, 5);
