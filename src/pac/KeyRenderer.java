@@ -19,6 +19,9 @@ public class KeyRenderer {
             Key obj = WhiteKeysA.get(i);
             int Color = obj.Color;           
 
+            Keys.get(obj.index).ps.update();
+            Keys.get(obj.index).ps.display();
+
             if (Keys.get(obj.index).Active){
                 p.fill(Color);
             }
@@ -27,8 +30,7 @@ public class KeyRenderer {
 
             p.rect(WhiteKeysA.get(i).x, 0, 35, 233);
 
-            Keys.get(obj.index).ps.update();
-            Keys.get(obj.index).ps.display();
+            
             // p.fill(1,360,360);
             // p.text(obj.index+12 * 2,WhiteKeysA.get(i).x,0);
         }

@@ -9,7 +9,7 @@ public class Start extends PApplet {
     }
 
     public void settings() {
-        size(1280,1000,P3D);
+        size(1280,1000);
         // fullScreen(P2D);
         // size(1000,1000);
     }

@@ -25,26 +25,35 @@ class ParticleSystem {
             for (int i = 0; i < n; i++) {
                 Particle p = new Particle(pS,x,y,Color);
                 particles.add(p);
-                particleShape.addChild(p.getShape());
+                // particleShape.addChild(p.getShape());
               }
+              System.out.println(particleShape.getChildCount());
         }
       
     }
   
     void update() {
-      for (int i = 0;i<particles.size();i++) {
-        Particle p = particles.get(i);
-        if(p.isDead()) {
-            particleShape.removeChild( i );
-            particles.remove(i);
-        }
-        else p.update();
-      }
-    //   System.out.println(particleShape.getChildIndex(who));
+      // for (int i = 0;i<particles.size();i++) {
+      //   Particle p = particles.get(i);
+      //   if(p.isDead()) {
+      //       particleShape.removeChild( i );
+      //       particles.remove(i);
+      //   }
+      //   else p.update();
+      // }
     }
   
     void display() {
-    //   System.out.println(particleShape.getChildCount());
-      pS.shape(particleShape);
+
+      for (int i = particles.size()-1; i >= 0; i--) {
+        Particle p = particles.get(i);
+        p.update();
+        p.display();
+        if (p.isDead()) {
+          particles.remove(i);
+        }
+      }
+
+      // pS.shape(particleShape);
     }
   }
