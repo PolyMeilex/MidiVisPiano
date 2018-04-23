@@ -35,7 +35,7 @@ class Particle {
     // part.endShape();
     
     rebirth(x,y);
-    lifespan = 50;
+    lifespan = 100;
   }
 
   PShape getShape() {
@@ -61,8 +61,10 @@ class Particle {
   }
   
   public void display() {
-    p.fill(p.color(p.hue(Color),360,360,p.map(lifespan,0,50,0,360) ));
-    p.ellipse(position.x, position.y, partSize, partSize);
+    // p.fill(p.color(p.hue(Color),360,360,p.map(lifespan,0,50,0,360) ));
+    p.tint(p.color(p.hue(Color),360,360,p.map(lifespan,0,100,0,360) ));
+    p.image(p.Psprite,position.x, position.y, partSize, partSize);
+    // p.ellipse(position.x, position.y, partSize, partSize);
   }
 
 
