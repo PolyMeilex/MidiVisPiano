@@ -36,10 +36,12 @@ public class Start extends PApplet {
     long last_time = System.nanoTime();
 
     Boolean ParticlesSwitch=false;
+    int ParticleNumber=5;
 
     public void controlEvent(ControlEvent theEvent) {   
-        System.out.println("Something is happening.");
-        ParticlesSwitch=!ParticlesSwitch;
+        System.out.println(theEvent.name());
+        if(theEvent.name() == "ParticleToggle") ParticlesSwitch = theEvent.value()==1;
+        if(theEvent.name() == "ParticleNumber") ParticleNumber = (int) theEvent.getValue();
     }
 
     public void noteTrigger(int i, int channel, Boolean state) {
@@ -67,7 +69,7 @@ public class Start extends PApplet {
 
         }
         else{
-            if(ParticlesSwitch) KeyObj.ps.spawnParticles(5,KeyObj.x,0,Color);
+            if(ParticlesSwitch) KeyObj.ps.spawnParticles(this.ParticleNumber,KeyObj.x,0,Color);
         }
         
 
