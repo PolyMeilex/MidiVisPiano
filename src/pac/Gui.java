@@ -31,11 +31,5 @@ public class Gui{
     
     }
     
-    public void controlEvent(ControlEvent theEvent) {
-    
-                System.out.println("Something is happening.");
-    
-    
-    }
 
 } 

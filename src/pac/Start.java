@@ -14,8 +14,8 @@ public class Start extends PApplet {
     }
 
     public void settings() {
-        // size(1280,1000);
-        fullScreen();
+        size(1280,1000);
+        // fullScreen();
         // size(1000,1000);
     }
 
@@ -37,7 +37,9 @@ public class Start extends PApplet {
 
     long last_time = System.nanoTime();
 
-
+    public void controlEvent(ControlEvent theEvent) {   
+        System.out.println("Something is happening.");
+    }
 
     public void noteTrigger(int i, int channel, Boolean state) {
         Key KeyObj = this.Keys.get(i-12 * 2);
@@ -113,7 +115,7 @@ public class Start extends PApplet {
             }
         }
 
-        // KeyRenderer = new KeyRenderer(this, WhiteKeysA, BlackKeysA);
+        KeyRenderer = new KeyRenderer(this, WhiteKeysA, BlackKeysA);
 
         // Player MidiPlayer = new Player(file, this);
         // MidiPlayer.start();
@@ -140,7 +142,7 @@ public class Start extends PApplet {
 
     
 
-
+        pushMatrix();
         translate(0, height - 233);
 
         KeyRenderer.draw(Keys);
@@ -158,6 +160,7 @@ public class Start extends PApplet {
             Note.draw();
         }
 
+        popMatrix();
         // translate(0, -height + 233);
 
 
