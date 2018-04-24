@@ -7,7 +7,7 @@ import java.io.*;
 //import java.util.ArrayList;
 
 public class Player extends Thread {
-    String File = "adv.mid";
+    String File = "Music03.mid";
     Start RootParrent;
 
     public class myListener implements Receiver {

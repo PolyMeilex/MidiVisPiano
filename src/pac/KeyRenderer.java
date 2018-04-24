@@ -15,12 +15,10 @@ public class KeyRenderer {
     }
 
     public void draw(ArrayList<Key> Keys) {
+        p.stroke(0);
         for (int i = 0; i < WhiteKeysA.size(); i++) {
             Key obj = WhiteKeysA.get(i);
             int Color = obj.Color;           
-
-            Keys.get(obj.index).ps.update();
-            Keys.get(obj.index).ps.display();
 
             if (Keys.get(obj.index).Active){
                 p.fill(Color);
@@ -29,6 +27,10 @@ public class KeyRenderer {
                 p.fill(0, 0, 320);
 
             p.rect(WhiteKeysA.get(i).x, 0, 35, 233);
+
+            
+            Keys.get(obj.index).ps.update();
+            Keys.get(obj.index).ps.display();
 
             
             // p.fill(1,360,360);

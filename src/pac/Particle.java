@@ -14,7 +14,7 @@ class Particle {
   PShape part;
   float partSize;
   
-  PVector gravity = new PVector(0f,-0.1f);
+  PVector gravity = new PVector(0f,0f);
 
   int Color = 360;
 
@@ -22,7 +22,7 @@ class Particle {
     this.p = p;
     this.Color = Color;
     PImage sprite = p.Psprite;
-    partSize = p.random(10,50);
+    partSize = p.random(1,20);
     // part = p.createShape();
     // part.beginShape(p.QUAD);
     // part.noStroke();
@@ -35,7 +35,7 @@ class Particle {
     // part.endShape();
     
     rebirth(x,y);
-    lifespan = 100;
+    lifespan = 50;
   }
 
   PShape getShape() {
@@ -45,7 +45,7 @@ class Particle {
   void rebirth(float x, float y) {
     float a = p.random(p.TWO_PI);
     float speed = p.random(0.5f,4f);
-    velocity = new PVector(p.cos(a)/2, p.sin(a));
+    velocity = new PVector(p.cos(a)/2, -a/2);
     velocity.mult(speed);
     // part.resetMatrix();
     // part.translate(x, y); 
@@ -61,10 +61,11 @@ class Particle {
   }
   
   public void display() {
-    // p.fill(p.color(p.hue(Color),360,360,p.map(lifespan,0,50,0,360) ));
-    p.tint(p.color(p.hue(Color),360,360,p.map(lifespan,0,100,0,360) ));
-    p.image(p.Psprite,position.x, position.y, partSize, partSize);
-    // p.ellipse(position.x, position.y, partSize, partSize);
+    p.fill(p.color(p.hue(Color),360,360,p.map(lifespan,0,50,0,360) ));
+    // p.tint(p.color(p.hue(Color),360,360,p.map(lifespan,0,100,0,360) ));
+    // p.image(p.Psprite,position.x, position.y, partSize, partSize);
+    p.noStroke();
+    p.ellipse(position.x, position.y, partSize, partSize);
   }
 
 

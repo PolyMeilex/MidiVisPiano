@@ -9,8 +9,8 @@ public class Start extends PApplet {
     }
 
     public void settings() {
-        size(1280,1000);
-        // fullScreen(P2D);
+        // size(1280,1000);
+        fullScreen();
         // size(1000,1000);
     }
 
@@ -57,7 +57,7 @@ public class Start extends PApplet {
 
         }
         else{
-            KeyObj.ps.spawnParticles(1,KeyObj.x,0,Color);
+            KeyObj.ps.spawnParticles(5,KeyObj.x,0,Color);
         }
         
 

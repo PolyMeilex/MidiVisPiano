@@ -33,6 +33,7 @@ public class Note {
 
   void draw() {
     // parent.translate(0,0,0.0001f*this.key.index);
+    parent.stroke(0);
     if (!this.black) {
       parent.fill(this.Color);
       parent.rect(this.x, this.y, 36, this.h, 7);
