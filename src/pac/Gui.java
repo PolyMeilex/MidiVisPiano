@@ -8,15 +8,7 @@ public class Gui{
 
     private ControlP5 control;
     
-    private ControlWindow window;
-    
     private Controller<Toggle> bgColor;
-    
-    private Controller<Toggle> rSpeeds;
-    
-    private Controller<Knob> blurKnob;
-    
-    private Controller<Knob> speedKnob;
     
     
     public Gui(PApplet p) {

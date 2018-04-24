@@ -33,12 +33,13 @@ public class Start extends PApplet {
 
     float SclPlaned = 1f;
     float Scl = 1f;
-    
-
     long last_time = System.nanoTime();
+
+    Boolean ParticlesSwitch=false;
 
     public void controlEvent(ControlEvent theEvent) {   
         System.out.println("Something is happening.");
+        ParticlesSwitch=!ParticlesSwitch;
     }
 
     public void noteTrigger(int i, int channel, Boolean state) {
@@ -66,7 +67,7 @@ public class Start extends PApplet {
 
         }
         else{
-            KeyObj.ps.spawnParticles(5,KeyObj.x,0,Color);
+            if(ParticlesSwitch) KeyObj.ps.spawnParticles(5,KeyObj.x,0,Color);
         }
         
 
@@ -82,8 +83,6 @@ public class Start extends PApplet {
             Notes.add(test);
         }
     }
-
-    public void func(){System.out.print("huj");}
 
     public void setup() {
         background(0);
@@ -117,8 +116,8 @@ public class Start extends PApplet {
 
         KeyRenderer = new KeyRenderer(this, WhiteKeysA, BlackKeysA);
 
-        // Player MidiPlayer = new Player(file, this);
-        // MidiPlayer.start();
+        Player MidiPlayer = new Player(file, this);
+        MidiPlayer.start();
 
         colorMode(HSB, 360);
        
