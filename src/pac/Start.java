@@ -2,9 +2,14 @@ package pac;
 
 import java.util.ArrayList;
 import processing.core.*;
+import controlP5.*;
 
 public class Start extends PApplet {
+    static String file;
+
     public static void main(String[] args) {
+//        file = args[0];
+    	file = "Music01.mid";
         PApplet.main("pac.Start");
     }
 
@@ -25,11 +30,13 @@ public class Start extends PApplet {
 
     KeyRenderer KeyRenderer;
 
+
     float SclPlaned = 1f;
-    float Scl = 1;
+    float Scl = 1f;
     
 
     long last_time = System.nanoTime();
+
 
 
     public void noteTrigger(int i, int channel, Boolean state) {
@@ -48,11 +55,11 @@ public class Start extends PApplet {
             Color = color(0, 0, 100); 
             
             if(i==35||i==36){
-                SclPlaned=2f;
+                SclPlaned=1.05f;
                 // else bgPlaned=1f;
             }
             else{
-                SclPlaned=0.1f;
+                SclPlaned=1f;
             }
 
         }
@@ -74,12 +81,12 @@ public class Start extends PApplet {
         }
     }
 
+    public void func(){System.out.print("huj");}
+
     public void setup() {
         background(0);
-        // white     = loadImage("texture/wKey.png");
-        // black     = loadImage("texture/bKey.png");
-        // blackA    = loadImage("texture/bKeyA.png");
-        // noteImage = loadImage("texture/note.png");
+
+        new Gui(this);
 
         Psprite = loadImage("texture/sprite.png");
 
@@ -106,10 +113,10 @@ public class Start extends PApplet {
             }
         }
 
-        KeyRenderer = new KeyRenderer(this, WhiteKeysA, BlackKeysA);
+        // KeyRenderer = new KeyRenderer(this, WhiteKeysA, BlackKeysA);
 
-        Player MidiPlayer = new Player("1.mid", this);
-        MidiPlayer.start();
+        // Player MidiPlayer = new Player(file, this);
+        // MidiPlayer.start();
 
         colorMode(HSB, 360);
        
@@ -125,9 +132,9 @@ public class Start extends PApplet {
         textSize(26);
         text((int) frameRate + " FPS : " + Notes.size() + " Objs", 100, 100);
 
-        // translate (width/2,height/2);
-        // rotateX(0);
-        // translate (-width/2,-height/2);
+        translate (width/2,height/2);
+        // scale(Scl);
+        translate (-width/2,-height/2);
         
         // translate(0, -0*50f);
 

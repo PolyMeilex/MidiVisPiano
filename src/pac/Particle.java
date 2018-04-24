@@ -23,16 +23,6 @@ class Particle {
     this.Color = Color;
     PImage sprite = p.Psprite;
     partSize = p.random(1,20);
-    // part = p.createShape();
-    // part.beginShape(p.QUAD);
-    // part.noStroke();
-    // part.texture(sprite);
-    // part.normal(0, 0, 1);
-    // part.vertex(-partSize/2, -partSize/2, 0, 0);
-    // part.vertex(+partSize/2, -partSize/2, sprite.width, 0);
-    // part.vertex(+partSize/2, +partSize/2, sprite.width, sprite.height);
-    // part.vertex(-partSize/2, +partSize/2, 0, sprite.height);
-    // part.endShape();
     
     rebirth(x,y);
     lifespan = 50;

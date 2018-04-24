@@ -13,7 +13,7 @@
             "stopOnEntry": false,
             "mainClass": "pac.Start",
             "projectName": "ProcesingPiano",
-            "args": ""
+            "args": "2.mid"
         }
     ]
 }
