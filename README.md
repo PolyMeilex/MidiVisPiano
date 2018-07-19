@@ -1,5 +1,5 @@
 # MidiVisPiano
-![img](https://i.imgur.com/4JmbDHG.png)
+![img](https://i.imgur.com/4JmbDHG.png)  
 [Video](https://www.youtube.com/watch?v=vcTihYOuf4M&feature=youtu.be)
 This is a small app for visualizing midi files, it was created for educational purposes only and was not intended to be published, but at the end, I decided to upload it in case someone is trying to create something similar and need some reference 
 
